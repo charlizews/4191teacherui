@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Turtle Robot Master Panel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- VIEW 1: Connection Setup Screen -->
+  <div id="connectionView" class="card">
+    <h2>Turtle Robot Control Panel</h2>
+
+    <!-- Action Button -->
+    <button id="connectBtn" class="btn btn-connect">Connect to Robot</button>
+
+    <!-- Connection Status Feedback -->
+    <div id="statusBadge" class="badge status-disconnected">
+      Status: Disconnected
+    </div>
+
+    <!-- Start Mission Button (Unlocks when BLE connects) -->
+    <button id="startBtn" class="btn btn-start" disabled>Start Mission</button>
+  </div>
+
+  <!-- VIEW 2: 20x20 Grid Screen (Side-by-Side Layout) -->
+  <div id="gridView" class="grid-page-container hidden">
+    
+    <!-- LEFT SIDE: Full Grid with Dual Axis Labels -->
+    <div class="grid-section">
+      <div id="gridContainer" class="grid-20x20"></div>
+    </div>
+
+    <!-- RIGHT SIDE: Control Panel Card -->
+    <div class="card control-card">
+      <h2>Grid Navigation</h2>
+      <div id="connectionStatusHeader" class="status-header">Connected to Robot</div>
+
+      <!-- Category Tracking Badges with Individual Clear Buttons -->
+      <div class="category-panel">
+        <div class="coord-badge">
+          <span>🚀 Start: <strong id="startDisplay">Not Set</strong></span>
+          <button id="clearStartBtn" class="btn-mini btn-danger">Clear</button>
+        </div>
+
+        <div class="coord-badge">
+          <span>🏁 Destination: <strong id="destDisplay">Not Set</strong></span>
+          <button id="clearDestBtn" class="btn-mini btn-danger">Clear</button>
+        </div>
+
+        <div class="coord-badge">
+          <span>🧱 Obstacles (<span id="obsCount">0</span>): <strong id="obsDisplay">None</strong></span>
+          <button id="clearObsBtn" class="btn-mini btn-danger">Clear</button>
+        </div>
+
+        <div class="coord-badge">
+          <span>🗣️ Vowels (<span id="vowelCount">0</span>): <strong id="vowelDisplay">None</strong></span>
+          <button id="clearVowelBtn" class="btn-mini btn-danger">Clear</button>
+        </div>
+      </div>
+
+      <!-- Item Placement Inputs -->
+      <div class="input-controls">
+        <input type="text" id="coordInput" placeholder="e.g. B14" maxlength="4" />
+        
+        <select id="itemTypeSelect" class="item-select">
+          <option value="start">🚀 Start (Required)</option>
+          <option value="dest">🏁 Destination (Required)</option>
+          <option value="obstacle">🧱 Obstacle (Optional)</option>
+          <option value="A">Letter A (Optional)</option>
+          <option value="E">Letter E (Optional)</option>
+          <option value="I">Letter I (Optional)</option>
+          <option value="O">Letter O (Optional)</option>
+          <option value="U">Letter U (Optional)</option>
+        </select>
+
+        <button id="placeBtn" class="btn btn-secondary">Place Item</button>
+        <button id="clearAllBtn" class="btn btn-outline-danger">Clear All</button>
+      </div>
+
+      <button id="sendBtn" class="btn btn-send" disabled>Send Mission to Robot</button>
+    </div>
+
+  </div>
+
+  <!-- NOTICE: type="module" allows ES6 imports in main.js -->
+  <script type="module" src="main.js"></script>
+</body>
+</html>
